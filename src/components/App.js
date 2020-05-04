@@ -1,43 +1,28 @@
-/* eslint-disable import/no-named-as-default */
-import { NavLink, Route, Switch } from "react-router-dom";
+import React  from 'react';
+import {Link} from 'react-router';
 
-import AboutPage from "./AboutPage";
-import FuelSavingsPage from "./containers/FuelSavingsPage";
-import HomePage from "./HomePage";
-import NotFoundPage from "./NotFoundPage";
-import PropTypes from "prop-types";
-import React from "react";
-import { hot } from "react-hot-loader";
-
-// This is a class-based component because the current
-// version of hot reloading won't hot reload a stateless
-// component at the top-level.
-
-class App extends React.Component {
-  render() {
-    const activeStyle = { color: 'blue' };
-    return (
-      <div>
-        <div>
-          <NavLink exact to="/" activeStyle={activeStyle}>Home</NavLink>
-          {' | '}
-          <NavLink to="/fuel-savings" activeStyle={activeStyle}>Demo App</NavLink>
-          {' | '}
-          <NavLink to="/about" activeStyle={activeStyle}>About</NavLink>
+const App = (props) => {
+  return (
+    <div className="container">
+      <nav className="navbar navbar-default">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <a className="navbar-brand" href="#">Scotch Books</a>
+          </div>
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul className="nav navbar-nav">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/books">Book</Link></li>
+              <li><Link to="/cart">Cart</Link></li>
+            </ul>
+          </div>
         </div>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/fuel-savings" component={FuelSavingsPage} />
-          <Route path="/about" component={AboutPage} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </div>
-    );
-  }
-}
-
-App.propTypes = {
-  children: PropTypes.element
+      </nav>
+      {/* Each smaller components */}
+      {props.children}
+    </div>
+  );
 };
 
-export default hot(module)(App);
+export default App

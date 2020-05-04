@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import fuelSavings from './fuelSavingsReducer';
-import { connectRouter } from 'connected-react-router'
+import books from './bookReducers'
 
-const rootReducer = history => combineReducers({
-  router: connectRouter(history),
-  fuelSavings,
+export default combineReducers({
+  books: books,
+  // More reducers if there are
+  // can go here
 });
-
-export default rootReducer;
